@@ -1,5 +1,233 @@
-scripts/01_create_tables.sql
-scripts/02_insert_clientes.sql
-scripts/03_insert_produtos.sql
-scripts/04_insert_pedidos.sql
-scripts/05_insert_items.sql
+script create table
+
+
+
+
+
+CREATE TABLE Clientes (
+ID_Cliente INTEGER PRIMARY KEY IDENTITY(1,1) NOT NULL,
+DATA_CADASTRO DATE NOT NULL,
+EMAIL Varchar (100) NOT NULL,
+ESTADO Char (2) NOT NULL,
+CIDADE Varchar (50) NOT NULL,
+NOME VARCHAR (100) NOT NULL,
+TELEFONE varchar (20) 
+);
+
+=====================================================================================
+
+
+ CREATE TABLE produtos
+ ( id_produto INTEGER PRIMARY KEY IDENTITY (1,1) NOT NULL,
+nome text not null,
+preco numeric NOT NULL,
+estoque integer CHECK (estoque >= 0)
+);
+
+=====================================================================================
+
+
+CREATE TABLE Pedidos(
+id_pedido Integer primary key identity (1,1) not null,
+data_pedido date not null,
+id_cliente  integer NOT NULL,
+FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente)
+);
+
+=====================================================================================
+
+
+CREATE TABLE Itens_Pedidos (
+    id_Item INT PRIMARY KEY IDENTITY(1,1),  
+    id_pedido INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    sub_total DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido),
+    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+    );
+
+
+=====================================================================================
+
+
+
+
+script insert clientes
+
+
+INSERT INTO Clientes (
+DATA_CADASTRO,
+EMAIL,
+ESTADO,
+CIDADE,
+NOME,
+TELEFONE)
+
+
+
+
+
+VALUES
+('2024-01-10', 'joao.silva@email.com', 'SP', 'São Paulo', 'João Silva', '11991234567'),
+('2024-01-12', 'maria.santos@email.com', 'RJ', 'Rio de Janeiro', 'Maria Santos', '21992345678'),
+('2024-01-15', 'pedro.oliveira@email.com', 'MG', 'Belo Horizonte', 'Pedro Oliveira', '31993456789'),
+('2024-01-18', 'ana.souza@email.com', 'PR', 'Curitiba', 'Ana Souza', '41994567890'),
+('2024-01-20', 'carlos.lima@email.com', 'RS', 'Porto Alegre', 'Carlos Lima', '51995678901'),
+('2024-01-22', 'juliana.costa@email.com', 'DF', 'Brasília', 'Juliana Costa', '61996789012'),
+('2024-01-25', 'rafael.almeida@email.com', 'BA', 'Salvador', 'Rafael Almeida', '71997890123'),
+('2024-01-27', 'fernanda.rocha@email.com', 'PE', 'Recife', 'Fernanda Rocha', '81998901234'),
+('2024-01-28', 'lucas.pereira@email.com', 'CE', 'Fortaleza', 'Lucas Pereira', '85999012345'),
+('2024-01-30', 'amanda.martins@email.com', 'SC', 'Florianópolis', 'Amanda Martins', '47990123456'),
+('2024-02-01', 'bruno.nunes@email.com', 'MS', 'Campo Grande', 'Bruno Nunes', '67991234567'),
+('2024-02-03', 'carla.mendes@email.com', 'ES', 'Vitória', 'Carla Mendes', '27992345678'),
+('2024-02-05', 'diego.carvalho@email.com', 'PB', 'João Pessoa', 'Diego Carvalho', '83993456789'),
+('2024-02-07', 'patricia.gomes@email.com', 'MA', 'São Luís', 'Patrícia Gomes', '98994567890'),
+('2024-02-10', 'gustavo.ribeiro@email.com', 'RO', 'Porto Velho', 'Gustavo Ribeiro', '69995678901');
+
+
+
+=====================================================================================
+
+
+
+
+script insert produtos
+
+
+
+INSERT INTO produtos (
+nome,
+preco,
+estoque
+)
+
+VALUES
+   ('Notebook Dell', 4500, 15),
+    ('Mouse Sem Fio', 89.9, 42),
+    ('Teclado Mecânico', 259.9, 28),
+    ('Monitor 24" LG', 899.9, 12),
+    ('Headset Gamer', 199.9, 23),
+    ('SSD 480GB', 349.9, 31),
+    ('Memória RAM 8GB', 239.9, 18),
+    ('HD Externo 1TB', 329.9, 14),
+    ('Webcam Full HD', 159.9, 22),
+    ('Mousepad Gamer', 49.9, 37),
+    ('Cadeira Gamer', 899.9, 8),
+    ('Fonte 500W', 289.9, 11),
+    ('Gabinete Mid Tower', 219.9, 9),
+    ('Placa de Vídeo', 1899.9, 5),
+    ('Processador i5', 989.9, 7)
+    ;
+
+===================================================================================
+
+
+
+scripts insert pedidos
+
+INSERT INTO Pedidos (
+data_pedido, id_cliente
+) VALUES
+
+('2024-02-15', 1),
+('2024-02-15', 3),
+('2024-02-16', 2),
+('2024-02-16', 5),
+('2024-02-17', 4),
+('2024-02-17', 7),
+('2024-02-18', 6),
+('2024-02-18', 9),
+('2024-02-19', 8),
+('2024-02-19', 10),
+('2024-02-20', 12),
+('2024-02-20', 14),
+('2024-02-21', 1),
+('2024-02-21', 3),
+('2024-02-22', 5),
+('2024-02-22', 7),
+('2024-02-23', 9),
+('2024-02-23', 11),
+('2024-02-24', 13),
+('2024-02-24', 15),
+('2024-02-25', 2),
+('2024-02-25', 4),
+('2024-02-26', 6),
+('2024-02-26', 8),
+('2024-02-27', 10);
+
+
+===================================================================================
+
+
+
+
+script insert items 
+
+
+INSERT INTO Itens_Pedidos (
+id_pedido,
+id_produto,
+quantidade,
+sub_total
+) 
+
+
+VALUES
+(1, 1, 1, 4500),
+(1, 2, 1, 89.9),
+(2, 5, 1, 199.9),
+(2, 7, 2, 479.8),
+(3, 3, 1, 259.9),
+(3, 4, 1, 899.9),
+(4, 8, 1, 329.9),
+(4, 9, 1, 159.9),
+(5, 10, 2, 99.8),
+(5, 11, 1, 899.9),
+(6, 12, 1, 289.9),
+(6, 13, 2, 439.8),
+(7, 14, 1, 1899.9),
+(7, 15, 1, 989.9),
+(8, 1, 3, 13500),
+(8, 3, 1, 259.9),
+(9, 5, 2, 399.8),
+(9, 7, 1, 239.9),
+(10, 9, 1, 159.9),
+(10, 11, 2, 1799.8),
+(11, 2, 1, 89.9),
+(11, 4, 1, 899.9),
+(12, 6, 2, 699.8),
+(12, 8, 1, 329.9),
+(13, 10, 1, 49.9),
+(13, 12, 3, 869.7),
+(14, 13, 1, 219.9),
+(14, 14, 2, 3799.8),
+(15, 15, 1, 989.9),
+(15, 1, 2, 9000),
+(16, 2, 1, 89.9),
+(16, 3, 1, 259.9),
+(17, 4, 2, 1799.8),
+(17, 5, 1, 199.9),
+(18, 6, 1, 349.9),
+(18, 7, 2, 479.8),
+(19, 8, 1, 329.9),
+(19, 9, 1, 159.9),
+(20, 10, 2, 99.8),
+(20, 11, 1, 899.9),
+(21, 12, 1, 289.9),
+(21, 13, 1, 219.9),
+(22, 14, 2, 3799.8),
+(22, 15, 1, 989.9),
+(23, 1, 1, 4500),
+(23, 2, 2, 179.8),
+(24, 3, 1, 259.9),
+(24, 4, 1, 899.9),
+(25, 5, 2, 399.8),
+(25, 6, 1, 349.9);
+
+
+
+
+
+
+
