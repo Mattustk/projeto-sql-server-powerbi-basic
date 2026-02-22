@@ -1,0 +1,5 @@
+scripts/01_create_tables.sql
+scripts/02_insert_clientes.sql
+scripts/03_insert_produtos.sql
+scripts/04_insert_pedidos.sql
+scripts/05_insert_items.sql
