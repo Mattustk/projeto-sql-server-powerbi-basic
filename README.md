@@ -32,3 +32,13 @@ Dashboard de vendas desenvolvido para análise de faturamento, produtos e client
 - Produtos (15 registros)  
 - Pedidos (25 registros)
 - Itens_Pedidos (50 registros)
+
+## 🚀 COMO EXECUTAR O PROJETO
+### Pré-requisitos
+- SQL Server (2019 ou superior)
+- Power BI Desktop
+
+### Passo a Passo
+1. **Clone o repositório**...
+2. **Execute os scripts SQL**...
+3. **Abra o Power BI**...
