@@ -1,7 +1,7 @@
 # 🚀 PROJETO SQL SERVER + POWER BI - DASHBOARD DE VENDAS
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-red)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2022-red)
 ![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-green)
 
 ## 📊 SOBRE O PROJETO
